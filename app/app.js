@@ -1,12 +1,11 @@
+//  defining app routes. eg. how to hande a request like /home
+//  to define routes, need an angularJS module called ngRoute
+//  to use ngRoute, need to inject it or add into our app
 'use strict';
 
-// Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+	'ngRoute'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+	// routes will be here
+}])
