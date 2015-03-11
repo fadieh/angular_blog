@@ -12,7 +12,7 @@
  
 </head>
  
-<body>
+<body ng-controller="RegisterCtrl">
  
     <div class="container">
         <div class="jumbotron" style="padding-bottom:0px;">
@@ -47,7 +47,7 @@
         			Sign In
         		</a>
         	</label>
-        	<button type="button" ng-disabled="!user.email || !user.password" class="btn btn-lg btn-primary btn-block">
+        	<button ng-click="signUp();" type="button" ng-disabled="!user.email || !user.password" class="btn btn-lg btn-primary btn-block">
         		Register
         	</button>
         </form>
