@@ -11,17 +11,17 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
 }])
  
 // Home controller
-.controller('HomeCtrl', ['$scope','$firebaseSimpleLogin',function($scope,$firebaseSimpleLogin) {
+.controller('HomeCtrl', ['$scope','$firebaseAuth', function($scope,$firebaseAuth) {
 
-	var firebaseObj = new Firebase("https://blistering-heat-2473.firebaseio.com");
-	var loginObj = $firebaseSimpleLogin(firebaseObj);
+	var firebaseObj = new Firebase("https://boiling-inferno-1527.firebaseio.com");
+	var loginObj = $firebaseAuth(firebaseObj);
   
   $scope.user = {};
   $scope.SignIn = function(e){ 
      e.preventDefault();
      var username = $scope.user.email;
      var password = $scope.user.password;
-     loginObj.$login('password', {
+     loginObj.$authWithPassword({
                 email: username,
                 password: password
             })
