@@ -40,6 +40,7 @@
         		<p class="help-block" ng-show="regForm.password.$error.minlength">
         			Min password length is 8 characters.
         		</p>
+        		<p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
         	</div>
 
         	<label class="checkbox">

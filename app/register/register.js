@@ -23,6 +23,8 @@ angular.module('myApp.register', ['ngRoute', 'firebase'])
 					$location.path('/home');
 					console.log('User creation success');
 				}, function(error) {
+					$scope.regError = true;
+					$scope.regErrorMessage = error.message;
 					console.log(error);
 				});
 			}
