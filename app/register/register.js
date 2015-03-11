@@ -9,7 +9,7 @@ angular.module('myApp.register', ['ngRoute', 'firebase'])
 	});
 }])
 
-.controller('RegisterCtrl', ['$scope', '$firebaseAuth', function($scope, $firebaseAuth) {
+.controller('RegisterCtrl', ['$scope', '$location', '$firebaseAuth', function($scope, $location, $firebaseAuth) {
 
 	var firebaseObj = new Firebase("https://boiling-inferno-1527.firebaseio.com");
 	var auth = $firebaseAuth(firebaseObj);
@@ -20,6 +20,7 @@ angular.module('myApp.register', ['ngRoute', 'firebase'])
 			var password = $scope.user.password;
 			if (email && password) {
 				auth.$createUser(email, password).then(function(){
+					$location.path('/home');
 					console.log('User creation success');
 				}, function(error) {
 					console.log(error);
