@@ -2,16 +2,15 @@
  
 angular.module('myApp.home', ['ngRoute', 'firebase'])
  
-// Declared route 
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {
         templateUrl: 'home/home.html',
         controller: 'HomeCtrl'
     });
 }])
+
  
-// Home controller
-.controller('HomeCtrl', ['$scope', '$location', '$firebaseAuth', function($scope,$location,$firebaseAuth) {
+.controller('HomeCtrl', ['$scope', '$location', 'CommonProp', '$firebaseAuth', function($scope,$location,CommonProp,$firebaseAuth) {
 
 	var firebaseObj = new Firebase("https://boiling-inferno-1527.firebaseio.com");
 	var loginObj = $firebaseAuth(firebaseObj);
@@ -28,8 +27,22 @@ angular.module('myApp.home', ['ngRoute', 'firebase'])
             .then(function(user) {
                 console.log('Authentication successful');
                 $location.path('/welcome')
+                CommonProp.setUser(user.password.email);
             }, function(error) {
                 console.log('Authentication failure');
             });
   }
-}]);
+}])
+
+.service('CommonProp', function() {
+    var user = '';
+ 
+    return {
+        getUser: function() {
+            return user;
+        },
+        setUser: function(value) {
+            user = value;
+        }
+    };
+});
